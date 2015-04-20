@@ -87,4 +87,4 @@ Temporary Items
 .apdisk
 
 # we dont want local configs ever checked in
-config.yml
+AWSBillingToDynamoDB/config.yml

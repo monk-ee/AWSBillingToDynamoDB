@@ -32,24 +32,62 @@ GNU General Public License for more details.
 
 """
 
+import os, logging, sys, yaml
+import boto.dynamodb
+
 class AWSBillingTODynamoDB():
     """
     Connects to an S3 Billing Bucket and converts the files to a DynamoDB
 
     """
-    billing_bucket = "cloudtrek-billing"
-    dynamodb_table = "billing"
+    config = ""
+    conn = ""
 
 
     def __init__(self):
+        self.connect()
+        self.load_configuration()
         self.check_bucket_access()
         self.check_dynamodb_tables()
 
     def check_bucket_access(self):
         pass
 
+    def connect(self):
+        self.conn = boto.dynamodb.connect_to_region(self.config['general']['region'])
+
     def check_dynamodb_tables(self):
+        try:
+            self.conn.get_table(self.config['billing']['dbtables'])
+        except Exception as e:
+            #we want this error is table is not setup
+            if e['error_code'] == 'ResourceNotFoundException':
+                self.create_dynamodb_tables()
+        except:
+            exit("Some error I did not catch.")
+
+
+    def create_dynamodb_tables(self):
+
+
+    def load_configuration(self):
+        try:
+            config_str = open(os.path.dirname(os.path.abspath(__file__)) + '/config.yml', 'r')
+            self.config = yaml.load(config_str)
+            logfile = os.path.dirname(os.path.abspath(__file__)) + "/" + self.config['general']['logfile']
+            logging.basicConfig(filename=logfile, level=logging.INFO)
+        except IOError as error:
+            exit("Could not load config.yml: " + str(error))
+        except:
+            raise
+            exit("Unexpected error:" + str(sys.exc_info()[0]))
+
+    def create_dynamodb_tables(self):
+        self.set_schema()
         pass
 
+    def set_schema(self):
+        pass
 
-
+if __name__ == "__main__":
+    cs = AWSBillingTODynamoDB()
