@@ -1,0 +1,5 @@
+__author__ = "monkee"
+__version__ = "1.0.1"
+__maintainer__ = "monk-ee"
+__email__ = "magic.monkee.magic@gmail.com"
+__status__ = "Development"

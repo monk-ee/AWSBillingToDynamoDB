@@ -1,0 +1,4 @@
+mock==1.0.1
+requests==0.13.8
+simplejson==2.6.1
+boto=>2.29.1
