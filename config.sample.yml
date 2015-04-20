@@ -1,0 +1,8 @@
+general:
+ region: 'ap-southeast-2'
+ format: 'standard'
+ time_zone: 'Australia/Brisbane'
+ logfile: 'errors.log'
+billing:
+ bucket: 'billing'
+ dbtables: 'billing'

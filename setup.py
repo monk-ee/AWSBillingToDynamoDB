@@ -22,7 +22,7 @@ setup(
     author='monk-ee',
     author_email='magic.monkee.magic@gmail.com',
     keywords=['aws', 'dynamodb'],
-    license='GNU 2.0',
+    license='GNU GPL v2.0',
     packages=['AWSBillingToDynamoDB'],
     install_requires = [ 'requests' ],
     test_suite='tests.all_tests',
