@@ -3,6 +3,8 @@ general:
  format: 'standard'
  time_zone: 'Australia/Brisbane'
  logfile: 'errors.log'
+ read_units: 10
+ write_units: 10
 billing:
  bucket: 'billing'
  dbtables: 'billing'
