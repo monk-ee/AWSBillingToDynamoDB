@@ -66,10 +66,6 @@ class AWSBillingTODynamoDB():
         except:
             exit("Some error I did not catch.")
 
-
-    def create_dynamodb_tables(self):
-
-
     def load_configuration(self):
         try:
             config_str = open(os.path.dirname(os.path.abspath(__file__)) + '/config.yml', 'r')
@@ -87,6 +83,12 @@ class AWSBillingTODynamoDB():
         pass
 
     def set_schema(self):
+        billing_table_schema = self.conn.create_schema(
+            hash_key_name='forum_name',
+            hash_key_proto_value=str,
+            range_key_name='subject',
+            range_key_proto_value=str
+        )
         pass
 
 if __name__ == "__main__":
